@@ -5,37 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/src/style.css" rel="stylesheet" />
     <title>xurya-tw-homepage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-
   <!-- BODY -->
   <body class="m-12 bg-gray-300">
     <div class="rounded bg-white">
       <!-- NAV BAR-->
-      <nav class="relative m-4 flex flex-col items-center justify-between py-4 md:flex-row">
+      <nav class="relative m-4 flex flex-col md:flex-row justify-between py-4 items-center">
         <!-- LOGO DIV-->
-        <div class="flex w-full items-center justify-center gap-0.5 md:w-auto md:justify-between">
+        <div class="flex items-center justify-center gap-0.5 w-full md:w-auto justify-between">
           <div class="flex items-center gap-0.5">
-            <img class="h-3 w-3" src="/images/Green_x.svg" alt="" />
+            <img class="h-3 w-3" src="/public/images/Green_x.svg" alt="" />
             <h1 class="font-semibold">Xurya</h1>
           </div>
 
-          <!-- MOBILE MENU BUTTON-->
-          <button id="menu-btn" class="z-50 md:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="h-8 w-8"
-            >
+          <!-- MOBILE MENU BUTTON -->
+          <button id="menu-btn" class="md:hidden z-50">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
           </button>
         </div>
 
-        <!-- LINK -->
-        <ul class="mt-4 hidden gap-6 md:mt-0 md:flex">
+        <!-- LINK (hidden on mobile, shown on md+) -->
+        <ul class="hidden md:flex gap-6 mt-4 md:mt-0">
           <li>Home</li>
           <li>About Us</li>
           <li>Features</li>
@@ -43,88 +36,66 @@
           <li>Contact</li>
         </ul>
 
-        <!-- AUTH DIV-->
-        <div class="mt-4 hidden gap-2 md:mt-0 md:flex">
+        <!-- AUTH DIV (hidden on mobile, shown on md+) -->
+        <div class="hidden md:flex gap-2 mt-4 md:mt-0">
           <span class="rounded-3xl p-2 px-4 outline outline-slate-950">Log In</span>
-          <span class="rounded-3xl bg-green-400 p-2 text-slate-50 outline outline-green-400"
-            >Get in touch</span
-          >
+          <span class="rounded-3xl bg-green-400 p-2 text-slate-50 outline outline-green-400">Get in touch</span>
+        </div>
+
+        <!-- MOBILE MENU OVERLAY (right-side popup) -->
+        <div id="mobile-menu" class="fixed inset-0 bg-black/50 z-40 hidden" onclick="this.classList.add('hidden')"></div>
+        <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-64 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+              <div class="flex items-center gap-0.5">
+                <img class="h-3 w-3" src="/public/images/Green_x.svg" alt="" />
+                <h1 class="font-semibold text-lg">Xurya</h1>
+              </div>
+              <button onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.getElementById('mobile-drawer').classList.add('translate-x-full')">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <ul class="flex flex-col gap-6 text-lg">
+              <li>Home</li>
+              <li>About Us</li>
+              <li>Features</li>
+              <li>Services</li>
+              <li>Contact</li>
+            </ul>
+            <div class="mt-10 flex flex-col gap-4">
+              <span class="rounded-3xl p-3 px-6 outline outline-slate-950 text-center">Log In</span>
+              <span class="rounded-3xl bg-green-400 p-3 text-slate-50 text-center">Get in touch</span>
+            </div>
+          </div>
         </div>
       </nav>
-
-      <!-- MOBILE MENU OVERLAY (right-side popup) -->
-      <div
-        id="mobile-menu"
-        class="fixed inset-0 z-40 hidden bg-black/50"
-        onclick="this.classList.add('hidden')"
-      ></div>
-      <div
-        id="mobile-drawer"
-        class="fixed top-0 right-0 z-50 h-full w-64 translate-x-full transform bg-white shadow-2xl transition-transform duration-300 ease-in-out"
-      >
-        <div class="p-6">
-          <div class="mb-8 flex items-center justify-between">
-            <div class="flex items-center gap-0.5">
-              <img class="h-3 w-3" src="/public/images/Green_x.svg" alt="" />
-              <h1 class="text-lg font-semibold">Xurya</h1>
-            </div>
-            <button
-              onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.getElementById('mobile-drawer').classList.add('translate-x-full')"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                class="h-7 w-7"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          <ul class="flex flex-col gap-6 text-lg">
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Features</li>
-            <li>Services</li>
-            <li>Contact</li>
-          </ul>
-          <div class="mt-10 flex flex-col gap-4">
-            <span class="rounded-3xl p-3 px-6 text-center outline outline-slate-950">Log In</span>
-            <span class="rounded-3xl bg-green-400 p-3 text-center text-slate-50">Get in touch</span>
-          </div>
-        </div>
-      </div>
 
       <!-- HERO SECTION -->
       <header class="relative px-3">
         <div class="w-full">
           <img
             class="mt-0 h-120 w-full rounded-3xl object-cover"
-            src="/images/wind_turbine_hero.jpg"
+            src="/public/images/wind_turbine_hero.jpg"
             alt="wind mail background"
           />
         </div>
-
         <!-- OVERLAPPING TEXTS -->
-        <div class="absolute top-20 left-4 w-11/12 text-white md:top-30 md:left-15 md:w-1/2">
+        <div class="absolute top-20 left-4 md:top-30 md:left-15 w-11/12 md:w-1/2 text-white">
           <h1 class="text-[15px] font-light">#1 Energy provider in the world</h1>
-          <h1 class="py-5 text-4xl leading-tight md:text-7xl">
-            New Energy <span class="block">For the Future</span>
-          </h1>
-          <div class="flex flex-col gap-5 text-lg underline underline-offset-10 md:flex-row">
+          <h1 class="py-5 text-4xl md:text-7xl leading-tight">New Energy <span class="block">For the Future</span></h1>
+          <div class="flex flex-col md:flex-row gap-5 underline underline-offset-10 text-lg">
             <h3>Get in touch</h3>
             <h3>Our services</h3>
           </div>
         </div>
-
         <!-- OVERLAPPING IMAGES -->
-        <div class="absolute top-10 right-4 rounded-3xl bg-black/40 p-5 pr-6 pb-2 md:right-30">
+        <div class="absolute top-10 right-4 md:right-30 rounded-3xl bg-black/40 p-5 pr-6 pb-2">
           <div class="flex">
             <img
               class="mr-10 mb-10 h-30 w-30 rounded-lg"
-              src="/images/wind_turbine_card.png"
+              src="/public/images/wind_turbine_card.png"
               alt=""
             />
             <svg
@@ -142,7 +113,6 @@
               />
             </svg>
           </div>
-
           <div class="flex">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -164,10 +134,9 @@
             <span class="w-40 pl-15 text-white">Discover Our recent project</span>
           </div>
         </div>
-
         <!-- SECTION INSIDE PICTURE-->
         <section
-          class="absolute bottom-10 flex h-35 rounded-t-4xl right-1 md:rounded-tl-3xl md:rounded-tr-none bg-white py-5  top-[350px] md:left-[600px] w-fit flex-row gap-10 px-10"
+          class="absolute bottom-10 left-1/2 -translate-x-1/2 md:top-[350px] md:left-[600px] flex flex-col md:flex-row gap-6 md:gap-10 rounded-tl-3xl bg-white px-6 md:px-10 py-5 text-center md:text-left w-11/12 md:w-auto"
         >
           <article>
             <h1 class="block text-4xl md:text-5xl">6 mil</h1>
@@ -182,63 +151,52 @@
             <h3>Employees work in all <span class="block">parts of the world</span></h3>
           </article>
         </section>
-
         <!-- CIRCLES-->
         <!-- Beginning-->
         <section class="mt-15 p-0 px-4">
-          <article class="flex flex-col gap-10 md:flex-row">
-            <!-- Removed from the class of first P: ml-10  p-0  flex-1-->
-            <p class="text-3xl leading-tight md:text-5xl">
+          <article class="flex flex-col md:flex-row gap-10">
+            <p class="text-3xl md:text-5xl leading-tight">
               Focusing on quality, <span class="text-gray-400">we maintain customer trust</span>
             </p>
-            <!-- Removed from the class of second P: mr-10 flex flex-1 items-center justify-center p-0 -->
             <p class="text-sm md:text-base">
               We ensure that every installation we build has strict quality<br />checks. Sustainable
               solutions for an environmentally friendly and renewable future.
             </p>
           </article>
-
           <!-- Actual Circles-->
-          <div class="m-10 flex flex-wrap items-center justify-center gap-8 md:gap-0 md:m-15">
+          <div class="m-10 md:m-15 flex flex-wrap items-center justify-center gap-8">
             <!-- 1st Circle -->
             <div
-              class="flex h-40 w-40 flex-col items-center justify-center rounded-full p-5 shadow-md outline outline-[#F2F4F4] md:h-50 md:w-50"
+              class="flex h-40 w-40 md:h-50 md:w-50 flex-col items-center justify-center rounded-full p-5 shadow-md outline outline-[#F2F4F4]"
             >
               <img src="" alt="" />
-              <span
-                class="mb-0 block pb-0 text-xl leading-none font-black text-green-600 md:text-2xl"
-                >Trend</span
-              >
+              <span class="mb-0 block pb-0 text-xl md:text-2xl leading-none font-black text-green-600">Trend</span>
               <span class="mt-0 block pt-0 leading-none tracking-[3px] text-green-600">MICRO</span>
             </div>
-
             <!-- 2nd Circle -->
             <div
-              class="flex h-40 w-40 flex-col items-center justify-center rounded-full bg-[#F2F4F4] p-5 outline outline-[#F2F4F4] md:h-50 md:w-50"
+              class="flex h-40 w-40 md:h-50 md:w-50 flex-col items-center justify-center rounded-full bg-[#F2F4F4] p-5 outline outline-[#F2F4F4]"
             >
               <img src="" alt="" />
               <span><span class="font-bold">Telia</span>Cygate</span>
             </div>
-
             <!-- 3rd Circle -->
             <div
-              class="flex h-40 w-40 flex-col items-center justify-center rounded-full bg-[#F2F4F4] p-5 outline outline-[#F2F4F4] md:h-50 md:w-50"
+              class="flex h-40 w-40 md:h-50 md:w-50 flex-col items-center justify-center rounded-full bg-[#F2F4F4] p-5 outline outline-[#F2F4F4]"
             >
               <img src="" alt="" />
               <span class="font-bold">Business</span>
             </div>
-
             <!-- 4th Circle -->
             <div
-              class="flex h-40 w-40 flex-col items-center justify-center rounded-full bg-[#F2F4F4] p-5 outline outline-[#F2F4F4] md:h-50 md:w-50"
+              class="flex h-40 w-40 md:h-50 md:w-50 flex-col items-center justify-center rounded-full bg-[#F2F4F4] p-5 outline outline-[#F2F4F4]"
             >
               <img src="" alt="" />
               <span class="font-bold">headspace</span>
             </div>
-
             <!-- 5th Circle -->
             <div
-              class="flex h-40 w-40 flex-col items-center justify-center rounded-full bg-[#F2F4F4] p-5 outline outline-[#F2F4F4] md:h-50 md:w-50"
+              class="flex h-40 w-40 md:h-50 md:w-50 flex-col items-center justify-center rounded-full bg-[#F2F4F4] p-5 outline outline-[#F2F4F4]"
             >
               <span class="font-bold">Medtronic</span>
             </div>
@@ -247,55 +205,41 @@
       </header>
 
       <!-- MAIN SECTIONS-->
-      <main>
+      <main class="">
         <!-- 1ST SECTION -->
         <section class="bg-[#F2F4F4] px-4 md:px-0">
-          <!-- Title -->
-          <h2
-            class="m-10 mb-10 flex-col justify-center px-4 pt-10 text-3xl leading-tight md:m-20 md:px-50 md:text-5xl"
-          >
+          <h2 class="m-10 md:m-20 mb-10 px-4 md:px-50 pt-10 text-3xl md:text-5xl leading-tight">
             We offer quality,
             <span class="text-gray-400">with the best materials and service</span>
           </h2>
-          <!-- Stacked Cards -->
-          <div
-            class="grid grid-cols-1 grid-rows-2 items-center justify-center gap-8 p-6 pr-15 md:grid-cols-3 md:gap-0 md:p-10"
-          >
-            <div
-              class="h-40 rounded-tl-md bg-white p-3 outline-2 outline-[#edefef] md:h-40 md:w-96"
-            >
-              <img class="m-2 h-3 w-3" src="/images/Green_x.svg" alt="" />
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 p-6 md:p-10">
+            <div class="h-40 rounded-tl-md bg-white p-3 outline-2 outline-[#edefef]">
+              <img class="m-2 h-3 w-3" src="/public/images/Green_x.svg" alt="" />
               <h3 class="mb-3 text-2xl">Layered security</h3>
               <p>With layered security, we ensure the safety of every unit we provide</p>
             </div>
-            <div class="h-50 bg-white p-3 outline-2 outline-[#edefef] md:h-40 md:w-96">
-              <img class="m-2 h-3 w-3" src="/images/Green_x.svg" alt="" />
+            <div class="h-40 bg-white p-3 outline-2 outline-[#edefef]">
+              <img class="m-2 h-3 w-3" src="/public/images/Green_x.svg" alt="" />
               <h3 class="mb-3 text-2xl">Quality control of each part</h3>
               <p>Every unit you send is hecked carefully for every detail.</p>
             </div>
-            <div
-              class="h-50 rounded-tr-md bg-white p-3 outline-2 outline-[#edefef] md:h-40 md:w-96"
-            >
-              <img class="m-2 h-3 w-3" src="/images/Green_x.svg" alt="" />
+            <div class="h-40 rounded-tr-md md:rounded-tr-none bg-white p-3 outline-2 outline-[#edefef]">
+              <img class="m-2 h-3 w-3" src="/public/images/Green_x.svg" alt="" />
               <h3 class="mb-3 text-2xl">Reliable customer service</h3>
               <p>Our customer service is available 24 hours a week, with qualified people.</p>
             </div>
-            <div
-              class="h-50 rounded-bl-md bg-white p-3 outline-2 outline-[#edefef] md:h-40 md:w-96"
-            >
-              <img class="m-2 h-3 w-3" src="/images/Green_x.svg" alt="" />
+            <div class="h-40 rounded-bl-md md:rounded-bl-none bg-white p-3 outline-2 outline-[#edefef]">
+              <img class="m-2 h-3 w-3" src="/public/images/Green_x.svg" alt="" />
               <h3 class="mb-3 text-2xl">Maintenance manual book</h3>
               <p>We provide a guidebook that can be used to ensure maximum care.</p>
             </div>
-            <div class="h-50 bg-white p-3 outline-2 outline-[#edefef] md:h-40 md:w-96">
-              <img class="m-2 h-3 w-3" src="/images/Green_x.svg" alt="" />
+            <div class="h-40 bg-white p-3 outline-2 outline-[#edefef]">
+              <img class="m-2 h-3 w-3" src="/public/images/Green_x.svg" alt="" />
               <h3 class="mb-3 text-2xl">Delivered safely</h3>
               <p>Every unit we send arrives safely and quickly, without any obstacles or drama</p>
             </div>
-            <div
-              class="h-50 rounded-br-md bg-white p-3 outline-2 outline-[#edefef] md:h-40 md:w-96"
-            >
-              <img class="m-2 h-3 w-3" src="/images/Green_x.svg" alt="" />
+            <div class="h-40 rounded-br-md bg-white p-3 outline-2 outline-[#edefef]">
+              <img class="m-2 h-3 w-3" src="/public/images/Green_x.svg" alt="" />
               <h3 class="mb-3 text-2xl">Based on artificial intelligence</h3>
               <p>You can control and view each unit from your phone, it's very easy to use.</p>
             </div>
@@ -306,52 +250,39 @@
         <section class="grid grid-cols-1 md:grid-cols-2">
           <div class="p-10">
             <div class="mb-10">
-              <h1 class="text-4xl leading-tight md:text-5xl">
+              <h1 class="text-4xl md:text-5xl leading-tight">
                 Trusted service,<span class="text-gray-400">for your various needs</span>
               </h1>
-              <button class="mt-5 rounded-3xl bg-green-400 p-2 px-6 text-white">
-                Get in touch
-              </button>
+              <button class="mt-5 rounded-3xl bg-green-400 p-2 px-6 text-white">Get in touch</button>
             </div>
             <div class="grid grid-cols-2 gap-5">
               <div class="rounded-md p-3 outline-2 outline-[#edefef]">
                 <h1 class="font-bold text-[#edefef]">01</h1>
                 <p>Solar panels for home</p>
-                <span class="text-[13px] font-semibold text-[#646767] underline underline-offset-5"
-                  >View Details</span
-                >
+                <span class="text-[13px] font-semibold text-[#646767] underline underline-offset-5">View Details</span>
               </div>
               <div class="rounded-md p-3 outline-2 outline-[#edefef]">
                 <h1 class="font-bold text-[#edefef]">02</h1>
                 <p>Solar panels for industry</p>
-                <span class="text-[13px] font-semibold text-[#646767] underline underline-offset-5"
-                  >View Details</span
-                >
+                <span class="text-[13px] font-semibold text-[#646767] underline underline-offset-5">View Details</span>
               </div>
               <div class="rounded-md p-3 outline-2 outline-[#edefef]">
                 <h1 class="font-bold text-[#edefef]">03</h1>
                 <p>Solar panels for chargers</p>
-                <span class="text-[13px] font-semibold text-[#646767] underline underline-offset-5"
-                  >View Details</span
-                >
+                <span class="text-[13px] font-semibold text-[#646767] underline underline-offset-5">View Details</span>
               </div>
               <div class="rounded-md p-3 outline-2 outline-[#edefef]">
                 <h1 class="font-bold text-[#edefef]">04</h1>
                 <p>Solar panels for generator</p>
-                <span class="text-[13px] font-semibold text-[#646767] underline underline-offset-5"
-                  >View Details</span
-                >
+                <span class="text-[13px] font-semibold text-[#646767] underline underline-offset-5">View Details</span>
               </div>
             </div>
           </div>
           <div class="p-10">
-            <img
-              class="h-full w-full rounded-lg object-cover"
-              src="/public/images/solar_panel_man.avif"
-              alt=""
-            />
+            <img class="h-full w-full rounded-lg object-cover" src="/public/images/solar_panel_man.avif" alt="" />
           </div>
         </section>
+
         <!-- 3RD SECTION-->
         <section class="px-4">
           <h1 class="m-10 px-4 md:px-70 text-3xl md:text-5xl leading-tight">
@@ -389,6 +320,7 @@
             </h3>
           </div>
         </section>
+      </main>
 
       <!-- FOOTER -->
       <footer class="bg-black p-10 md:p-20 text-white">
@@ -451,7 +383,6 @@
         document.getElementById('mobile-drawer').classList.remove('translate-x-full');
       });
     </script>
-
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
